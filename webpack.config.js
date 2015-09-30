@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
   entry: [
@@ -7,16 +8,16 @@ module.exports = {
   ],
 
   output: {
-    path: __dirname + '/dist',
+    path: path.join(__dirname, 'dist'),
     publicPath: '/',
     filename: 'bundle.js'
   },
 
   devtool: 'sourcemap',
 
-  // eslint: {
-  //   configFile: '.eslintrc'
-  // },
+  eslint: {
+    configFile: '.eslintrc'
+  },
 
   module: {
 
