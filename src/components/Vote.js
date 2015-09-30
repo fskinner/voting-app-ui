@@ -1,6 +1,8 @@
-import React from 'react';
+import React from 'react/addons';
 
 export default React.createClass({
+  mixins: [React.addons.PureRenderMixin],
+
   getPair() {
     return this.props.pair || [];
   },
