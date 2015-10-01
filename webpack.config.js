@@ -13,7 +13,7 @@ module.exports = {
     filename: 'bundle.js'
   },
 
-  devtool: 'sourcemap',
+  devtool: 'source-map',
 
   eslint: {
     configFile: '.eslintrc'
