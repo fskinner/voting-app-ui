@@ -12,12 +12,16 @@ import App from './components/App';
 import {VotingContainer} from './components/Voting';
 import {ResultsContainer} from './components/Results';
 
+const socket = io(`${location.protocol}//${location.hostname}:8090`);
+socket.on('state', state =>
+  store.dispatch(setState(state))
+);
+
 const createStoreWithMiddleware = applyMiddleware(
-  remoteActionMiddleware
+  remoteActionMiddleware(socket)
 )(createStore);
 const store = createStoreWithMiddleware(reducer);
 
-const store = createStore(reducer);
 store.dispatch({
   type: 'SET_STATE',
   state: {
@@ -27,11 +31,6 @@ store.dispatch({
     }
   }
 });
-
-const socket = io(`${location.protocol}//${location.hostname}:8090`);
-socket.on('state', state =>
-  store.dispatch(setState(state))
-);
 
 const routes = <Route handler={App}>
   <Route path="/results" handler={ResultsContainer} />
